@@ -1,11 +1,8 @@
-﻿using ConsoleExtender;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Numerator
+namespace Chractor
 {
 
     class  Program
