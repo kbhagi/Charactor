@@ -1,35 +1,38 @@
-﻿
-using System;
+﻿using System;
 using System.Text;
+using System.Threading;
 
-namespace Charactor
+
+namespace Numerator
 {
-
-   sealed class  Program
+    class Program
     {
         static void Main(string[] args)
         {
             bool quit = false;
-           SetWindowSize();
-            Startup_Animate();
+            SetWindowSize();
+           Startup_Animate();
             SetDesignElements();
             while (!quit)
-            {             
-            ShowMenu(); //UI 
-            quit = Task();  //start
+            {
+                ShowMenu(); //UI 
+                quit = Task();  //start
             }
         }
+
+    
+
         public static bool Task()
         {
-         private  bool quit = false;
-         private  int choice = 0;
+            bool quit = false;
+            int choice = 0;
             try
             {
                 choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine(Insert_Tab(4)); 
+                        Console.WriteLine(Insert_Tab(4));
                         Console.WriteLine("Type start ascii value: then return key");
                         int start = int.Parse(Console.ReadLine());
                         Console.WriteLine("Type end ascii value: then return key");
@@ -46,15 +49,18 @@ namespace Charactor
                         Console.WriteLine();
                         quit = true;
                         break;
+
                 }
             }
             catch
             {
-                
-               Warning("Invalid Input, Try again!");
+
+
+                Warning("Invalid Input, Try again!");
             }
-   
+
             return quit;
+
         }
 
         public static void GenerateCharacters(int min, int max)
@@ -64,10 +70,10 @@ namespace Charactor
             {
                 // Get ASCII character.
                 char c = (char)i;
-                Console.WriteLine("Unicode value of"+Repeat(' ',1)+i+ Repeat(' ', 1) +"is"+Repeat(' ',1)+c);
+                Console.WriteLine("Unicode value of" + Repeat(' ', 1) + i + Repeat(' ', 1) + "is" + Repeat(' ', 1) + c);
                 display += c;
             }
-           
+
         }
         public static void Print_Ascii_Table()
         {
@@ -142,17 +148,20 @@ namespace Charactor
             Console.WriteLine("Press 3 to Quit");
 
         }
-       public static SetWindowSize()
-       {
-        for (int i = 1; i <60; i++)
+        public static void SetWindowSize()
+        {
+            //Console.SetWindowSize(120, 60);
+            for (int i = 1; i < 120; i++)
             {
-                Console.SetWindowSize(i, i);
-                System.Threading.Thread.Sleep(50);
+                
+                Console.SetWindowSize(i, 60);
+                Thread.Sleep(50);
             }
-       }
-       public static Startup_Animate()
-       {
-         string LoadingText = "Loading...";
+           
+        }
+        public static void Startup_Animate()
+        {
+            string LoadingText = "Loading...";
             string TitleBarText = "";
             bool Loading = true;
 
@@ -164,28 +173,31 @@ namespace Charactor
                 {
                     TitleBarText = TitleBarText + LoadingText[i];
                     Console.Title = TitleBarText;
-                    Thread.Sleep(240);
+                   Thread.Sleep(240);
                 }
                 TitleBarText = "";
+                Console.Title = TitleBarText;
+                Loading = false;
             }
-            Console.Read();
-         
-       }
-      public static void SetDesignElements()
-      {
-        Console.BackgroundColor = ConsoleColor.White;
-           Console.ForegroundColor=ConsoleColor.Magenta;
+            //Console.Read();
+
+        }
+        public static void SetDesignElements()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
-             string TitleText = "";
-         TitleText=@"
+            string TitleText = "";
+            TitleText = @"
   ______  __    __       ___      .______          ___       ______ .___________.  ______   .______      
  /      ||  |  |  |     /   \     |   _  \        /   \     /      ||           | /  __  \  |   _  \     
 |  ,----'|  |__|  |    /  ^  \    |  |_)  |      /  ^  \   |  ,----'`---|  |----`|  |  |  | |  |_)  |    
 |  |     |   __   |   /  /_\  \   |      /      /  /_\  \  |  |         |  |     |  |  |  | |      /     
 |  `----.|  |  |  |  /  _____  \  |  |\  \----./  _____  \ |  `----.    |  |     |  `--'  | |  |\  \----.
  \______||__|  |__| /__/     \__\ | _| `._____/__/     \__\ \______|    |__|      \______/  | _| `._____|";
-         
-      }
+
+            Console.Write(TitleText);
+        }
         public static string Repeat(char c, int count)
         {
             return new String(c, count);
@@ -209,12 +221,13 @@ namespace Charactor
             }
             return sb.ToString();
         }
-      static void Warning(string message)
-{
-    Console.BackgroundColor = ConsoleColor.Red;
-    Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine(message);
-    Console.ResetColor();
+        public static void Warning(string message)
+        {
+            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(Insert_Tab(5)+message);
+        } }
 }
-    }
-}
+
+    
+
