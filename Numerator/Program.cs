@@ -2,25 +2,27 @@
 using System;
 using System.Text;
 
-namespace Chractor
+namespace Charactor
 {
 
-    class  Program
+   sealed class  Program
     {
         static void Main(string[] args)
         {
             bool quit = false;
-
+           SetWindowSize();
+            Startup_Animate();
+            SetDesignElements();
             while (!quit)
-            {
-                DisplayMenu(); //UI 
-                quit = Task();  //start
+            {             
+            ShowMenu(); //UI 
+            quit = Task();  //start
             }
         }
         public static bool Task()
         {
-            bool quit = false;
-            int choice = 0;
+         private  bool quit = false;
+         private  int choice = 0;
             try
             {
                 choice = int.Parse(Console.ReadLine());
@@ -28,31 +30,28 @@ namespace Chractor
                 {
                     case 1:
                         Console.WriteLine(Insert_Tab(4)); 
-                        Console.WriteLine("Type first ascii value: then return key");
+                        Console.WriteLine("Type start ascii value: then return key");
                         int start = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Type second ascii value: then return key");
+                        Console.WriteLine("Type end ascii value: then return key");
                         int end = int.Parse(Console.ReadLine());
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         GenerateCharacters(start, end);
                         break;
                     case 2:
                         Console.WriteLine(Insert_Tab(4));
-                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Print_Ascii_Table();
                         break;
 
                     case 3:
-                        Console.ForegroundColor = ConsoleColor.Red; Console.Clear();
-                        Console.WriteLine("Quitting Application!");
+                        Warning("Quitting Application!");
+                        Console.WriteLine();
                         quit = true;
                         break;
                 }
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Clear();
-                Console.WriteLine(Repeat(' ',6)+"Invalid Input, Try again!");
+                
+               Warning("Invalid Input, Try again!");
             }
    
             return quit;
@@ -60,13 +59,13 @@ namespace Chractor
 
         public static void GenerateCharacters(int min, int max)
         {
-         
+            string display = string.Empty;
             for (int i = min; i <= max; i++)
             {
                 // Get ASCII character.
                 char c = (char)i;
                 Console.WriteLine("Unicode value of"+Repeat(' ',1)+i+ Repeat(' ', 1) +"is"+Repeat(' ',1)+c);
-               
+                display += c;
             }
            
         }
@@ -128,18 +127,13 @@ namespace Chractor
         }
 
 
-        public static void DisplayMenu()
+        public static void ShowMenu()
         {
-            Console.SetWindowSize(
-    Math.Min(90, Console.LargestWindowWidth),
-    Math.Min(60, Console.LargestWindowHeight));
             Console.WriteLine(Insert_Tab(5));
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(Insert_Tab(3) + "WELCOME TO Charactor" + Insert_Tab(2));
             Console.WriteLine();
             Console.WriteLine(Insert_Tab(1) + "ASCII equivalent Character Generator In C#");
             Console.WriteLine(Repeat(' ', 10));
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Press 1 to Find Unicode Equivalent");
             Console.WriteLine(Insert_Tab(4));
             Console.WriteLine("Press 2 to Print Unicode Chracter Table For First 128 characters");
@@ -148,9 +142,53 @@ namespace Chractor
             Console.WriteLine("Press 3 to Quit");
 
         }
+       public static SetWindowSize()
+       {
+        for (int i = 1; i <60; i++)
+            {
+                Console.SetWindowSize(i, i);
+                System.Threading.Thread.Sleep(50);
+            }
+       }
+       public static Startup_Animate()
+       {
+         string LoadingText = "Loading...";
+            string TitleBarText = "";
+            bool Loading = true;
+
+            Console.Title = TitleBarText;
+
+            while (Loading)
+            {
+                for (int i = 0; i < LoadingText.Length; i++)
+                {
+                    TitleBarText = TitleBarText + LoadingText[i];
+                    Console.Title = TitleBarText;
+                    Thread.Sleep(240);
+                }
+                TitleBarText = "";
+            }
+            Console.Read();
+         
+       }
+      public static void SetDesignElements()
+      {
+        Console.BackgroundColor = ConsoleColor.White;
+           Console.ForegroundColor=ConsoleColor.Magenta;
+            Console.Clear();
+             string TitleText = "";
+         TitleText=@"
+  ______  __    __       ___      .______          ___       ______ .___________.  ______   .______      
+ /      ||  |  |  |     /   \     |   _  \        /   \     /      ||           | /  __  \  |   _  \     
+|  ,----'|  |__|  |    /  ^  \    |  |_)  |      /  ^  \   |  ,----'`---|  |----`|  |  |  | |  |_)  |    
+|  |     |   __   |   /  /_\  \   |      /      /  /_\  \  |  |         |  |     |  |  |  | |      /     
+|  `----.|  |  |  |  /  _____  \  |  |\  \----./  _____  \ |  `----.    |  |     |  `--'  | |  |\  \----.
+ \______||__|  |__| /__/     \__\ | _| `._____/__/     \__\ \______|    |__|      \______/  | _| `._____|";
+         
+      }
         public static string Repeat(char c, int count)
         {
-            return new string(c, count);
+            return new String(c, count);
         }
         public static string Insert_Tab(int count)
         {
@@ -171,5 +209,12 @@ namespace Chractor
             }
             return sb.ToString();
         }
+      static void Warning(string message)
+{
+    Console.BackgroundColor = ConsoleColor.Red;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine(message);
+    Console.ResetColor();
+}
     }
 }
