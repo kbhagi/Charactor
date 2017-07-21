@@ -10,9 +10,10 @@ namespace Chractor
         static void Main(string[] args)
         {
             bool quit = false;
+
             while (!quit)
             {
-                ShowMenu(); //UI 
+                DisplayMenu(); //UI 
                 quit = Task();  //start
             }
         }
@@ -41,7 +42,7 @@ namespace Chractor
                         break;
 
                     case 3:
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red; Console.Clear();
                         Console.WriteLine("Quitting Application!");
                         quit = true;
                         break;
@@ -50,7 +51,8 @@ namespace Chractor
             catch
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid Input, Try again!");
+                Console.Clear();
+                Console.WriteLine(Repeat(' ',6)+"Invalid Input, Try again!");
             }
    
             return quit;
@@ -58,13 +60,13 @@ namespace Chractor
 
         public static void GenerateCharacters(int min, int max)
         {
-            string display = string.Empty;
+         
             for (int i = min; i <= max; i++)
             {
                 // Get ASCII character.
                 char c = (char)i;
                 Console.WriteLine("Unicode value of"+Repeat(' ',1)+i+ Repeat(' ', 1) +"is"+Repeat(' ',1)+c);
-                display += c;
+               
             }
            
         }
@@ -126,7 +128,7 @@ namespace Chractor
         }
 
 
-        public static void ShowMenu()
+        public static void DisplayMenu()
         {
             Console.SetWindowSize(
     Math.Min(90, Console.LargestWindowWidth),
@@ -148,7 +150,7 @@ namespace Chractor
         }
         public static string Repeat(char c, int count)
         {
-            return new String(c, count);
+            return new string(c, count);
         }
         public static string Insert_Tab(int count)
         {
