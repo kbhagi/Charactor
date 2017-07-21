@@ -10,6 +10,10 @@ namespace Charactor
         static void Main(string[] args)
         {
             bool quit = false;
+           
+            SetWindowSize();
+            Startup_Animate();
+            SetDesignElements();
             while (!quit)
             {
                 ShowMenu(); //UI 
@@ -27,30 +31,28 @@ namespace Charactor
                 {
                     case 1:
                         Console.WriteLine(Insert_Tab(4)); 
-                        Console.WriteLine("Type first ascii value: then return key");
+                        Console.WriteLine("Type start ascii value: then return key");
                         int start = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Type second ascii value: then return key");
+                        Console.WriteLine("Type end ascii value: then return key");
                         int end = int.Parse(Console.ReadLine());
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         GenerateCharacters(start, end);
                         break;
                     case 2:
                         Console.WriteLine(Insert_Tab(4));
-                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Print_Ascii_Table();
                         break;
 
                     case 3:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Quitting Application!");
+                        Warning("Quitting Application!");
+                        Console.WriteLine();
                         quit = true;
                         break;
                 }
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid Input, Try again!");
+                
+               Warning("Invalid Input, Try again!");
             }
    
             return quit;
@@ -128,15 +130,11 @@ namespace Charactor
 
         public static void ShowMenu()
         {
-            SetWindowSize();
-            Startup_Animate();
             Console.WriteLine(Insert_Tab(5));
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(Insert_Tab(3) + "WELCOME TO Charactor" + Insert_Tab(2));
             Console.WriteLine();
             Console.WriteLine(Insert_Tab(1) + "ASCII equivalent Character Generator In C#");
             Console.WriteLine(Repeat(' ', 10));
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Press 1 to Find Unicode Equivalent");
             Console.WriteLine(Insert_Tab(4));
             Console.WriteLine("Press 2 to Print Unicode Chracter Table For First 128 characters");
@@ -172,7 +170,23 @@ namespace Charactor
                 TitleBarText = "";
             }
             Console.Read();
+         
        }
+      public static void SetDesignElements()
+      {
+        Console.BackgroundColor = ConsoleColor.White;
+           Console.ForegroundColor=ConsoleColor.Magenta;
+            Console.Clear();
+             string TitleText = "";
+         TitleText=@"
+  ______  __    __       ___      .______          ___       ______ .___________.  ______   .______      
+ /      ||  |  |  |     /   \     |   _  \        /   \     /      ||           | /  __  \  |   _  \     
+|  ,----'|  |__|  |    /  ^  \    |  |_)  |      /  ^  \   |  ,----'`---|  |----`|  |  |  | |  |_)  |    
+|  |     |   __   |   /  /_\  \   |      /      /  /_\  \  |  |         |  |     |  |  |  | |      /     
+|  `----.|  |  |  |  /  _____  \  |  |\  \----./  _____  \ |  `----.    |  |     |  `--'  | |  |\  \----.
+ \______||__|  |__| /__/     \__\ | _| `._____/__/     \__\ \______|    |__|      \______/  | _| `._____|";
+         
+      }
         public static string Repeat(char c, int count)
         {
             return new String(c, count);
@@ -196,5 +210,12 @@ namespace Charactor
             }
             return sb.ToString();
         }
+      static void Warning(string message)
+{
+    Console.BackgroundColor = ConsoleColor.Red;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine(message);
+    Console.ResetColor();
+}
     }
 }
