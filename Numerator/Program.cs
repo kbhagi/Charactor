@@ -10,14 +10,13 @@ namespace Charactor
         static void Main(string[] args)
         {
             bool quit = false;
-           
-            SetWindowSize();
+           SetWindowSize();
             Startup_Animate();
             SetDesignElements();
             while (!quit)
-            {
-                ShowMenu(); //UI 
-                quit = Task();  //start
+            {             
+            ShowMenu(); //UI 
+            quit = Task();  //start
             }
         }
         public static bool Task()
