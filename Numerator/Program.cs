@@ -2,10 +2,10 @@
 using System;
 using System.Text;
 
-namespace Chractor
+namespace Charactor
 {
 
-    class  Program
+   sealed class  Program
     {
         static void Main(string[] args)
         {
@@ -18,8 +18,8 @@ namespace Chractor
         }
         public static bool Task()
         {
-            bool quit = false;
-            int choice = 0;
+         private  bool quit = false;
+         private  int choice = 0;
             try
             {
                 choice = int.Parse(Console.ReadLine());
@@ -128,9 +128,8 @@ namespace Chractor
 
         public static void ShowMenu()
         {
-            Console.SetWindowSize(
-    Math.Min(90, Console.LargestWindowWidth),
-    Math.Min(60, Console.LargestWindowHeight));
+            SetWindowSize();
+            Startup_Animate();
             Console.WriteLine(Insert_Tab(5));
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(Insert_Tab(3) + "WELCOME TO Charactor" + Insert_Tab(2));
@@ -146,6 +145,34 @@ namespace Chractor
             Console.WriteLine("Press 3 to Quit");
 
         }
+       public static SetWindowSize()
+       {
+        for (int i = 1; i <60; i++)
+            {
+                Console.SetWindowSize(i, i);
+                System.Threading.Thread.Sleep(50);
+            }
+       }
+       public static Startup_Animate()
+       {
+         string LoadingText = "Loading...";
+            string TitleBarText = "";
+            bool Loading = true;
+
+            Console.Title = TitleBarText;
+
+            while (Loading)
+            {
+                for (int i = 0; i < LoadingText.Length; i++)
+                {
+                    TitleBarText = TitleBarText + LoadingText[i];
+                    Console.Title = TitleBarText;
+                    Thread.Sleep(240);
+                }
+                TitleBarText = "";
+            }
+            Console.Read();
+       }
         public static string Repeat(char c, int count)
         {
             return new String(c, count);
